@@ -1,0 +1,22 @@
+{
+    "properties": {
+        "pig-env": {
+            "properties": {
+                "content": "pig-env.sh"
+            },
+            "properties_attributes": {}
+        },
+        "pig-log4j": {
+            "properties": {
+                "content": "pig-log4j.properties"
+            },
+            "properties_attributes": {}
+        },
+        "pig-properties": {
+            "properties": {
+                "content": "pig-properties.properties"
+            },
+            "properties_attributes": {}
+        }
+    }
+}

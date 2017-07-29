@@ -1,0 +1,20 @@
+{
+    "properties": {
+        "slider-client": {
+            "properties": {},
+            "properties_attributes": {}
+        },
+        "slider-env": {
+            "properties": {
+                "content": "slider-env.sh"
+            },
+            "properties_attributes": {}
+        },
+        "slider-log4j": {
+            "properties": {
+                "content": "slider-log4j.properties"
+            },
+            "properties_attributes": {}
+        }
+    }
+}
