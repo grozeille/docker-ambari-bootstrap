@@ -76,9 +76,6 @@
           "name" : "HIVE_SERVER"
         },
         {
-          "name" : "MYSQL_SERVER"
-        },
-        {
           "name" : "HIVE_METASTORE"
         },
         {
