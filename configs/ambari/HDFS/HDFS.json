@@ -7,19 +7,16 @@
                 "ha.failover-controller.active-standby-elector.zk.op.retries": "120",
                 "hadoop.http.authentication.simple.anonymous.allowed": "true",
                 "hadoop.proxyuser.hcat.groups": "*",
-                "hadoop.proxyuser.hcat.hosts": "*",
+                "hadoop.proxyuser.hcat.hosts": "%HOSTGROUP::host_group_hive%",
                 "hadoop.proxyuser.hdfs.groups": "*",
                 "hadoop.proxyuser.hdfs.hosts": "*",
                 "hadoop.proxyuser.hive.groups": "*",
-                "hadoop.proxyuser.hive.hosts": "*",
-                "hadoop.proxyuser.livy.groups": "*",
-                "hadoop.proxyuser.livy.hosts": "*",
+                "hadoop.proxyuser.hive.hosts": "%HOSTGROUP::host_group_hive%",
                 "hadoop.proxyuser.root.groups": "*",
                 "hadoop.proxyuser.root.hosts": "hdp-ambari-server-1",
                 "hadoop.security.auth_to_local": "DEFAULT",
                 "hadoop.security.authentication": "simple",
                 "hadoop.security.authorization": "false",
-                "hadoop.security.key.provider.path": "",
                 "io.compression.codecs": "org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.SnappyCodec",
                 "io.file.buffer.size": "131072",
                 "io.serializations": "org.apache.hadoop.io.serializer.WritableSerialization",
@@ -33,9 +30,6 @@
             "properties_attributes": {
                 "final": {
                     "fs.defaultFS": "true"
-                },
-                "fs.defaultFS": {
-                    "final": "true"
                 }
             }
         },
@@ -43,7 +37,7 @@
             "properties": {
                 "content": "hadoop-env.sh",
                 "dtnode_heapsize": "1024m",
-                "hadoop_heapsize": "2048",
+                "hadoop_heapsize": "1024",
                 "hadoop_pid_dir_prefix": "/var/run/hadoop",
                 "hadoop_root_logger": "INFO,RFA",
                 "hdfs_log_dir_prefix": "/var/log/hadoop",
@@ -54,8 +48,8 @@
                 "keyserver_host": " ",
                 "keyserver_port": "",
                 "namenode_backup_dir": "/tmp/upgrades",
-                "namenode_heapsize": "2048m",
-                "namenode_opt_maxnewsize": "256m",
+                "namenode_heapsize": "1024m",
+                "namenode_opt_maxnewsize": "128m",
                 "namenode_opt_maxpermsize": "256m",
                 "namenode_opt_newsize": "128m",
                 "namenode_opt_permsize": "128m",
@@ -118,7 +112,7 @@
                 "dfs.datanode.balance.bandwidthPerSec": "6250000",
                 "dfs.datanode.data.dir": "/hadoop/hdfs/data",
                 "dfs.datanode.data.dir.perm": "750",
-                "dfs.datanode.du.reserved": "37371132928",
+                "dfs.datanode.du.reserved": "29519160832",
                 "dfs.datanode.failed.volumes.tolerated": "0",
                 "dfs.datanode.http.address": "0.0.0.0:50075",
                 "dfs.datanode.https.address": "0.0.0.0:50475",
@@ -126,7 +120,6 @@
                 "dfs.datanode.max.transfer.threads": "4096",
                 "dfs.domain.socket.path": "/var/lib/hadoop-hdfs/dn_socket",
                 "dfs.encrypt.data.transfer.cipher.suites": "AES/CTR/NoPadding",
-                "dfs.encryption.key.provider.uri": "",
                 "dfs.heartbeat.interval": "3",
                 "dfs.hosts.exclude": "/etc/hadoop/conf/dfs.exclude",
                 "dfs.http.policy": "HTTP_ONLY",
@@ -142,7 +135,6 @@
                 "dfs.namenode.checkpoint.edits.dir": "${dfs.namenode.checkpoint.dir}",
                 "dfs.namenode.checkpoint.period": "21600",
                 "dfs.namenode.checkpoint.txns": "1000000",
-                "dfs.namenode.datanode.registration.ip-hostname-check": "false",
                 "dfs.namenode.fslock.fair": "false",
                 "dfs.namenode.handler.count": "100",
                 "dfs.namenode.http-address": "%HOSTGROUP::host_group_namenode%:50070",
@@ -157,7 +149,7 @@
                 "dfs.namenode.write.stale.datanode.ratio": "1.0f",
                 "dfs.permissions.enabled": "true",
                 "dfs.permissions.superusergroup": "hdfs",
-                "dfs.replication": "1",
+                "dfs.replication": "3",
                 "dfs.replication.max": "50",
                 "dfs.support.append": "true",
                 "dfs.webhdfs.enabled": "true",
@@ -167,24 +159,6 @@
                 "nfs.file.dump.dir": "/tmp/.hdfs-nfs"
             },
             "properties_attributes": {
-                "dfs.datanode.data.dir": {
-                    "final": "true"
-                },
-                "dfs.datanode.failed.volumes.tolerated": {
-                    "final": "true"
-                },
-                "dfs.namenode.http-address": {
-                    "final": "true"
-                },
-                "dfs.namenode.name.dir": {
-                    "final": "true"
-                },
-                "dfs.support.append": {
-                    "final": "true"
-                },
-                "dfs.webhdfs.enabled": {
-                    "final": "true"
-                },
                 "final": {
                     "dfs.datanode.data.dir": "true",
                     "dfs.datanode.failed.volumes.tolerated": "true",
@@ -196,53 +170,19 @@
             }
         },
         "ranger-hdfs-audit": {
-            "properties": {
-                "ranger.plugin.hdfs.ambari.cluster.name": "{{cluster_name}}",
-                "xasecure.audit.destination.hdfs": "true",
-                "xasecure.audit.destination.hdfs.batch.filespool.dir": "/var/log/hadoop/hdfs/audit/hdfs/spool",
-                "xasecure.audit.destination.hdfs.dir": "hdfs://NAMENODE_HOSTNAME:8020/ranger/audit",
-                "xasecure.audit.destination.solr": "false",
-                "xasecure.audit.destination.solr.batch.filespool.dir": "/var/log/hadoop/hdfs/audit/solr/spool",
-                "xasecure.audit.destination.solr.urls": "",
-                "xasecure.audit.destination.solr.zookeepers": "NONE",
-                "xasecure.audit.is.enabled": "true",
-                "xasecure.audit.provider.summary.enabled": "false"
-            },
+            "properties": {},
             "properties_attributes": {}
         },
         "ranger-hdfs-plugin-properties": {
-            "properties": {
-                "REPOSITORY_CONFIG_USERNAME": "hadoop",
-                "common.name.for.certificate": "",
-                "external_admin_password": "",
-                "external_admin_username": "",
-                "external_ranger_admin_password": "",
-                "external_ranger_admin_username": "",
-                "hadoop.rpc.protection": "authentication",
-                "policy_user": "ambari-qa",
-                "ranger-hdfs-plugin-enabled": "No"
-            },
+            "properties": {},
             "properties_attributes": {}
         },
         "ranger-hdfs-policymgr-ssl": {
-            "properties": {
-                "xasecure.policymgr.clientssl.keystore": "/usr/hdp/current/hadoop-client/conf/ranger-plugin-keystore.jks",
-                "xasecure.policymgr.clientssl.keystore.credential.file": "jceks://file{{credential_file}}",
-                "xasecure.policymgr.clientssl.truststore": "/usr/hdp/current/hadoop-client/conf/ranger-plugin-truststore.jks",
-                "xasecure.policymgr.clientssl.truststore.credential.file": "jceks://file{{credential_file}}"
-            },
+            "properties": {},
             "properties_attributes": {}
         },
         "ranger-hdfs-security": {
-            "properties": {
-                "ranger.plugin.hdfs.policy.cache.dir": "/etc/ranger/{{repo_name}}/policycache",
-                "ranger.plugin.hdfs.policy.pollIntervalMs": "30000",
-                "ranger.plugin.hdfs.policy.rest.ssl.config.file": "/etc/hadoop/conf/ranger-policymgr-ssl.xml",
-                "ranger.plugin.hdfs.policy.rest.url": "{{policymgr_mgr_url}}",
-                "ranger.plugin.hdfs.policy.source.impl": "org.apache.ranger.admin.client.RangerAdminRESTClient",
-                "ranger.plugin.hdfs.service.name": "{{repo_name}}",
-                "xasecure.add-hadoop-authorization": "true"
-            },
+            "properties": {},
             "properties_attributes": {}
         },
         "ssl-client": {

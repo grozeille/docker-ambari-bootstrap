@@ -1,0 +1,136 @@
+{
+    "properties": {
+        "activity-conf": {
+            "properties": {
+                "activity.explorer.user": "activity_explorer",
+                "global.activity.analyzer.user": "activity_analyzer",
+                "global.activity.processing.parallelism": "8",
+                "global.activity.processor.pool.max.wait.seconds": "60",
+                "hdfs.activity.watcher.enabled": "true",
+                "mr_job.activity.watcher.enabled": "true",
+                "mr_job.max.job.size.mb.for.parallel.execution": "500",
+                "phoenix.sink.batch.size": "100",
+                "phoenix.sink.flush.interval.seconds": "30",
+                "tez_job.activity.watcher.enabled": "true",
+                "tez_job.tmp.dir": "/var/lib/smartsense/activity-analyzer/tez/tmp/",
+                "yarn_app.activity.watcher.enabled": "true"
+            },
+            "properties_attributes": {}
+        },
+        "activity-env": {
+            "properties": {
+                "activity-env-content": "#!/bin/bash\n\n# Copyright (c) 2011-2017, Hortonworks Inc.  All rights reserved.\n# Except as expressly permitted in a written agreement between you\n# or your company and Hortonworks, Inc, any use, reproduction,\n# modification, redistribution, sharing, lending or other exploitation\n# of all or any part of the contents of this file is strictly prohibited.\n\n# Enable verbose shell execution\n#set -xv\n\n## Set HOME for various components\nexport HADOOP_HOME=/usr/hdp/current/hadoop-client\nexport HDFS_HOME=/usr/hdp/current/hadoop-hdfs-client\nexport MAPREDUCE_HOME=/usr/hdp/current/hadoop-mapreduce-client\nexport YARN_HOME=/usr/hdp/current/hadoop-yarn-client\nexport HIVE_HOME=/usr/hdp/current/hive-client\nexport HCAT_HOME=/usr/hdp/current/hive-webhcat\nexport TEZ_HOME=/usr/hdp/current/tez-client\nexport HBASE_HOME=/usr/hdp/current/hbase-client\nexport PHOENIX_HOME=/usr/hdp/current/phoenix-client\nexport ACTIVITY_ANALYZER_HOME=/usr/hdp/share/hst/activity-analyzer\nexport AMS_COLLECTOR_HOME=/usr/lib/ambari-metrics-collector\nexport JAVA_HOME={{java_home}}\n\n## Set conf dir for various components\nexport HADOOP_CONF_DIR=/etc/hadoop/conf/\nexport HIVE_CONF_DIR=/etc/hive/conf/\nexport HBASE_CONF_DIR=/etc/hbase/conf/\nexport TEZ_CONF_DIR=/etc/tez/conf/\nexport ACTIVITY_ANALYZER_CONF_DIR=/etc/smartsense-activity/conf/\nexport AMS_HBASE_CONF=/etc/ams-hbase/conf\n\nexport DEBUG_ENABLED=false\n\n## Set JVM related configs\nexport ANALYZER_JAVA_OPTS=\"{{analyzer_jvm_opts}} -Xmx{{analyzer_jvm_heap}}m\"",
+                "analyzer_jvm_heap": "8192",
+                "analyzer_jvm_opts": "-Xms128m"
+            },
+            "properties_attributes": {}
+        },
+        "activity-log4j": {
+            "properties": {
+                "activity-log4j-content": "\n# Copyright (c) 2011-2017, Hortonworks Inc.  All rights reserved.\n# Except as expressly permitted in a written agreement between you\n# or your company and Hortonworks, Inc, any use, reproduction,\n# modification, redistribution, sharing, lending or other exploitation\n# of all or any part of the contents of this file is strictly prohibited.\n\n# Define some default values that can be overridden by system properties\n# Root logger option\nlog4j.rootLogger=INFO,file\n\nlog4j.appender.file=org.apache.log4j.RollingFileAppender\nlog4j.appender.file.File={{activity_log_dir}}/${log.file.name}\nlog4j.appender.file.MaxFileSize={{activity_max_file_size}}MB\nlog4j.appender.file.MaxBackupIndex={{activity_max_backup_index}}\nlog4j.appender.file.layout=org.apache.log4j.PatternLayout\nlog4j.appender.file.layout.ConversionPattern=%d{ISO8601} %5p [%t] %c{1}:%L - %m%n",
+                "activity_log_dir": "/var/log/smartsense-activity",
+                "activity_max_backup_index": "10",
+                "activity_max_file_size": "30"
+            },
+            "properties_attributes": {}
+        },
+        "activity-zeppelin-env": {
+            "properties": {
+                "activity-zeppelin-env-content": "#!/bin/bash\n\n# Copyright (c) 2011-2017, Hortonworks Inc.  All rights reserved.\n# Except as expressly permitted in a written agreement between you\n# or your company and Hortonworks, Inc, any use, reproduction,\n# modification, redistribution, sharing, lending or other exploitation\n# of all or any part of the contents of this file is strictly prohibited.\n\n\nexport JAVA_HOME={{java_home}}\n# Additional jvm options. for example, export ZEPPELIN_JAVA_OPTS=\"-Dspark.executor.memory=8g -Dspark.cores.max=16\"\nexport ZEPPELIN_JAVA_OPTS=\"-Dhdp.version={{hdp_version}} -Dlog.file.name=activity-explorer.log -DSmartSenseActivityExplorer\"      \t\t\n# export ZEPPELIN_INTP_MEM       \t\t# zeppelin interpreter process jvm mem options. Default = ZEPPELIN_MEM\n# export ZEPPELIN_INTP_JAVA_OPTS \t\t# zeppelin interpreter process jvm options. Default = ZEPPELIN_JAVA_OPTS\n\nexport ZEPPELIN_MEM=\" -Xms256m -Xmx1024m -XX:MaxPermSize=256m\"\nexport ZEPPELIN_LOG_DIR={{activity_log_dir}}\nexport ZEPPELIN_PID_DIR=/var/run/smartsense-activity-explorer\nexport ZEPPELIN_WAR_TEMPDIR=/var/lib/smartsense/activity-explorer/webapp\nexport ZEPPELIN_NOTEBOOK_DIR=/var/lib/smartsense/activity-explorer/notebook\nexport ZEPPELIN_CLASSPATH=\"/etc/ams-hbase/conf:${ZEPPELIN_CLASSPATH}\"\nexport CLASSPATH=${ZEPPELIN_CLASSPATH}"
+            },
+            "properties_attributes": {}
+        },
+        "activity-zeppelin-interpreter": {
+            "properties": {
+                "activity-zeppelin-interpreter-content": "{\n  \"interpreterSettings\": {\n    \"2BJB693M8\": {\n      \"id\": \"2BJB693M8\",\n      \"name\": \"phoenix\",\n      \"group\": \"phoenix\",\n      \"properties\": {\n        \"phoenix.jdbc.url\": \"{{activity_explorer_jdbc_url}}\",\n        \"phoenix.user\": \"\",\n        \"phoenix.password\": \"\",\n        \"phoenix.max.result\": \"1000\",\n        \"phoenix.driver.name\": \"org.apache.phoenix.jdbc.PhoenixDriver\"\n      },\n      \"interpreterGroup\": [\n        {\n          \"class\": \"org.apache.zeppelin.phoenix.PhoenixInterpreter\",\n          \"name\": \"sql\"\n        }\n      ],\n      \"dependencies\": [],\n      \"option\": {\n        \"remote\": true,\n        \"perNoteSession\": false\n      }\n    }\n  },\n\"interpreterBindings\": {\n    \"2BNVQJUBK\": [\n      \"2BJB693M8\"\n    ],\n    \"2BPD7951H\": [\n      \"2BJB693M8\"\n    ],\n    \"2BQH91X36\": [\n      \"2BJB693M8\"\n    ],\n    \"2BTCVPTMH\": [\n      \"2BJB693M8\"\n    ]\n  },\n\"interpreterRepositories\": [\n    {\n      \"id\": \"central\",\n      \"type\": \"default\",\n      \"url\": \"http://repo1.maven.org/maven2/\",\n      \"releasePolicy\": {\n        \"enabled\": true,\n        \"updatePolicy\": \"daily\",\n        \"checksumPolicy\": \"warn\"\n      },\n      \"snapshotPolicy\": {\n        \"enabled\": true,\n        \"updatePolicy\": \"daily\",\n        \"checksumPolicy\": \"warn\"\n      },\n      \"mirroredRepositories\": [],\n      \"repositoryManager\": false\n    }\n  ]\n}"
+            },
+            "properties_attributes": {}
+        },
+        "activity-zeppelin-shiro": {
+            "properties": {
+                "main.securityManager.sessionManager": "$sessionManager",
+                "main.sessionManager": "org.apache.shiro.web.session.mgt.DefaultWebSessionManager",
+                "securityManager.sessionManager.globalSessionTimeout": "86400000"
+            },
+            "properties_attributes": {}
+        },
+        "activity-zeppelin-site": {
+            "properties": {
+                "zeppelin.anonymous.allowed": "false",
+                "zeppelin.interpreter.connect.timeout": "30000",
+                "zeppelin.interpreter.dir": "/usr/hdp/share/hst/activity-explorer/interpreter",
+                "zeppelin.interpreters": "org.apache.zeppelin.phoenix.PhoenixInterpreter",
+                "zeppelin.notebook.dir": "/var/lib/smartsense/activity-explorer/notebook",
+                "zeppelin.notebook.homescreen.hide": "false",
+                "zeppelin.notebook.storage": "org.apache.zeppelin.notebook.repo.VFSNotebookRepo",
+                "zeppelin.server.addr": "0.0.0.0",
+                "zeppelin.server.allowed.origins": "*",
+                "zeppelin.server.context.path": "/",
+                "zeppelin.server.port": "9060",
+                "zeppelin.ssl": "false",
+                "zeppelin.ssl.client.auth": "false",
+                "zeppelin.ssl.key.manager.password": "admin",
+                "zeppelin.ssl.keystore.password": "admin",
+                "zeppelin.ssl.keystore.path": "/var/lib/smartsense/activity-explorer/keystore",
+                "zeppelin.ssl.keystore.type": "JKS",
+                "zeppelin.ssl.truststore.password": "admin",
+                "zeppelin.ssl.truststore.path": "/var/lib/smartsense/activity-explorer/truststore",
+                "zeppelin.ssl.truststore.type": "JKS",
+                "zeppelin.war.tempdir": "/var/lib/smartsense/activity-explorer/webapp",
+                "zeppelin.websocket.max.text.message.size": "1024000"
+            },
+            "properties_attributes": {}
+        },
+        "anonymization-rules": {
+            "properties": {
+                "anonymization-rules-content": "{\n\"rules\":[\n    {\n      \"name\": \"IP\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"(?<![a-z0-9\\\\.])[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}\\\\.[0-9]{1,3}(?![a-z0-9\\\\.\\\\-])(?!\\\\.[0-9])\"],\n      \"exclude_files\": [\"hdp-select*.*\", \"*version.txt\"]\n    },\n    {\n      \"name\": \"DOMAIN_NAME\",\n      \"rule_id\": \"Domain\"\n    },\n    {\n      \"name\": \"SSN\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"(?<![0-9x])([0-9x]{3}-[0-9x]{2}-[0-9]{4})(?![0-9x])\"],\n      \"include_files\": [\"*.log*\", \"*.out*\"],\n      \"exclude_files\" : [\"hst.log*\", \"hst.out*\"],\n      \"shared\": false\n    },\n    {\n      \"name\": \"CCN\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"(?<![0-9x])(18|21|3[04678]|4[0-9x]|5[1-5]|60|65)[0-9x]{2}[- ]([0-9x]{4}[- ]){2}[0-9]{0,4}(?![0-9x])\"],\n      \"extract\": \"(?<![0-9x])([0-9x -]+)(?![0-9x])\",\n      \"include_files\": [\"*.log*\", \"*.out*\"],\n      \"exclude_files\" : [\"hst.log.*\", \"hst.out\"],\n      \"shared\": false\n    },\n    {\n      \"name\": \"EMAIL\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"(?<![a-z0-9._%+-])[a-z0-9._%+-]+@[a-z0-9.-]+\\\\.[a-z]{2,6}(?![a-z0-9._%+-])$?\"],\n      \"shared\": false\n    },\n    {\n      \"name\": \"CORE_SITE_S3A\",\n      \"rule_id\": \"Property\",\n      \"properties\": [\"fs.s3a.session.token\",\"fs.s3a.proxy.host\",\"fs.s3a.proxy.username\",\"fs.s3a.proxy.password\"],\n      \"include_files\": [\"core-site.xml\"],\n      \"action\" : \"REPLACE\",\n      \"replace_value\": \"Hidden\"\n    },\n    {\n      \"name\": \"PASSWORDS\",\n      \"rule_id\": \"Property\",\n      \"properties\": [\".*password.*\", \".*awsAccessKeyId.*\",  \".*awsSecretAccessKey.*\", \".*awsAccessKeyId.*\", \"fs.azure.account.key.*\", \"ranger.service.https.attrib.keystore.pass\"],\n      \"include_files\": [\"*.xml\", \"*.properties\", \"*.yaml\", \"*.ini\"],\n      \"exclude_files\" : [\"capacity-scheduler.xml\"],\n      \"action\" : \"REPLACE\",\n      \"replace_value\": \"Hidden\"\n    },\n    {\n      \"name\": \"KNOX LDAP Password\",\n      \"rule_id\": \"Property\",\n      \"properties\": [\"main.ldapRealm.contextFactory.systemPassword\"],\n      \"include_files\": [\"topologies/*.xml\"],\n      \"action\" : \"REPLACE\",\n      \"parentNode\": \"param\",\n      \"replace_value\": \"Hidden\"\n    },\n    {\n      \"name\": \"KEYSTORE_PASSWORD_LOGGED\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"oozie.https.keystore.pass=([^\\\\s]*)\", \"OOZIE_HTTPS_KEYSTORE_PASS=([^\\\\s]*)\", \"ganglia_password=([^\\\\s]*)\", \"javax.jdo.option.ConnectionPassword=([^\\\\s]*)\"],\n      \"extract\": \"=([^\\\\s]*)\",\n      \"include_files\": [\"java_process.txt\", \"pid.txt\", \"ambari-agent.log\", \"java_process.txt\", \"oozie-env.cmd\", \"hive_set_v.txt\", \"beeline_set_v.txt\"],\n      \"shared\": false\n    },\n    {\n      \"name\": \"KEYSTORE_CONFIG\",\n      \"rule_id\": \"Property\",\n      \"properties\": [\"https.attrib.keystorePass\", \"HTTPS_KEYSTORE_PASS\"],\n      \"include_files\": [\"ranger_webserver.properties\"],\n      \"action\" : \"REPLACE\"\n    },\n    {\n      \"name\": \"KMS_KEYSTORE_PASSWORD\",\n      \"rule_id\": \"Pattern\",\n      \"patterns\": [\"KMS_SSL_KEYSTORE_PASS=([^\\\\s]*)\"],\n      \"extract\": \"=([^\\\\s]*)\",\n      \"include_files\": [\"kms-env.sh\"],\n      \"shared\": false\n    }\n]\n}"
+            },
+            "properties_attributes": {}
+        },
+        "hst-agent-conf": {
+            "properties": {
+                "agent.loglevel": "INFO",
+                "agent.tmp_dir": "/var/lib/smartsense/hst-agent/data/tmp",
+                "agent.version": "1.4.0.2.5.1.0-159",
+                "bundle.logs_to_capture": "(.*).log$,(.*).out$",
+                "security.anonymization.max.heap": "2048",
+                "server.connection_retry_count": "100",
+                "server.connection_retry_interval": "10",
+                "upload.retry_count": "100",
+                "upload.retry_interval": "15"
+            },
+            "properties_attributes": {}
+        },
+        "hst-log4j": {
+            "properties": {
+                "hst-log4j-content": "\n# Copyright (c) 2011-2017, Hortonworks Inc.  All rights reserved.\n# Except as expressly permitted in a written agreement between you\n# or your company and Hortonworks, Inc, any use, reproduction,\n# modification, redistribution, sharing, lending or other exploitation\n# of all or any part of the contents of this file is strictly prohibited.\n\n# Define some default values that can be overridden by system properties\n# Root logger option\nlog4j.rootLogger=INFO,file\n\nlog4j.appender.file=org.apache.log4j.RollingFileAppender\nlog4j.appender.file.File={{hst_log_dir}}/${log.file.name}\nlog4j.appender.file.MaxFileSize={{hst_max_file_size}}MB\nlog4j.appender.file.MaxBackupIndex={{hst_max_backup_index}}\nlog4j.appender.file.layout=org.apache.log4j.PatternLayout\nlog4j.appender.file.layout.ConversionPattern=%d{ISO8601} %5p [%t] %c{1}:%L - %m%n\n\n# HST logger\nlog4j.logger.com.hortonworks=INFO\ncom.github.oxo42.stateless4j=WARN\nlog4j.logger.com.sun.jersey=WARN\nlog4j.logger.org.eclipse.jetty.server=INFO",
+                "hst_log_dir": "/var/log/hst",
+                "hst_max_backup_index": "10",
+                "hst_max_file_size": "30"
+            },
+            "properties_attributes": {}
+        },
+        "hst-server-conf": {
+            "properties": {
+                "agent.request.processing.timeout": "7200",
+                "agent.request.syncup.interval": "180",
+                "client.threadpool.size.max": "40",
+                "customer.account.name": "unspecified",
+                "customer.enable.flex.subscription": "false",
+                "customer.flex.subscription.id": "",
+                "customer.notification.email": "unspecified",
+                "customer.smartsense.id": "unspecified",
+                "gateway.host": "embedded",
+                "gateway.port": "9451",
+                "gateway.registration.port": "9450",
+                "server.max.heap": "2048",
+                "server.port": "9000",
+                "server.ssl_enabled": "false",
+                "server.storage.dir": "/var/lib/smartsense/hst-server/data",
+                "server.tmp.dir": "/var/lib/smartsense/hst-server/tmp",
+                "server.url": "http://%HOSTGROUP::host_group_spark%:9000"
+            },
+            "properties_attributes": {}
+        }
+    }
+}

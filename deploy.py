@@ -1,8 +1,12 @@
+#!/usr/bin/env python
+
 from ambari_cli.ambariClient import AmbariClient
 from requests import Session
 import logging
 import os
 import json
+import sys
+import time
 
 def build_host_groups(config_folder, cluster_size, stack_name):
     blueprint_file = os.path.join(config_folder, "blueprint.json")
@@ -30,6 +34,20 @@ def build_host_groups(config_folder, cluster_size, stack_name):
 
     return result
 
+
+def check_for_rancher(session):
+    logging.info("Wait for rancher to be ready")
+    try:
+        r = session.get("http://rancher-metadata/")
+        if r.status_code != 200:
+            logging.info("Status code" + str(r.status_code))
+            return False
+        else:
+            return True
+    except:
+        logging.error("Unexpected error:", sys.exc_info()[1])
+        return False
+
 if __name__ == "__main__":
 
     # logging configuration
@@ -47,15 +65,22 @@ if __name__ == "__main__":
     HDP_UTIL_REPO_URL=os.environ.get('HDP_UTIL_REPO_URL')
 
     rancher_metadata_session = Session()
+
+    while True:
+        ready = check_for_rancher(rancher_metadata_session)
+        time.sleep(10)
+        if ready:
+            break
+
     r = rancher_metadata_session.get("http://rancher-metadata/latest/self/stack/name")
     r.raise_for_status()
 
-    stack_name = r.content
+    stack_name = str(r.text)
 
     r = rancher_metadata_session.get("http://rancher-metadata/latest/self/stack/services/ambari-agent-datanode/scale")
     r.raise_for_status()
 
-    cluster_size = int(r.content)
+    cluster_size = int(r.text)
 
     config_folder = "configs/ambari"
 
@@ -63,6 +88,8 @@ if __name__ == "__main__":
     ambari_client.connect('ambari-server', stack_name, port=8080)
 
     host_groups = build_host_groups(config_folder, cluster_size, stack_name)
+
+    logging.info(host_groups)
 
     ambari_client.create_cluster(
         config_folder,
