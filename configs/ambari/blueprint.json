@@ -10,9 +10,6 @@
           "name" : "NAMENODE"
         },
         {
-          "name" : "HST_AGENT"
-        },
-        {
           "name" : "METRICS_MONITOR"
         }
       ]
@@ -25,9 +22,6 @@
           "name" : "SECONDARY_NAMENODE"
         },
         {
-          "name" : "HST_AGENT"
-        },
-        {
           "name" : "METRICS_MONITOR"
         }
       ]
@@ -38,9 +32,6 @@
       "components" : [
         {
           "name" : "ZOOKEEPER_SERVER"
-        },
-        {
-          "name" : "HST_AGENT"
         },
         {
           "name" : "METRICS_MONITOR"
@@ -59,9 +50,6 @@
         },
         {
           "name" : "APP_TIMELINE_SERVER"
-        },
-        {
-          "name" : "HST_AGENT"
         },
         {
           "name" : "METRICS_MONITOR"
@@ -85,9 +73,6 @@
           "name" : "WEBHCAT_SERVER"
         },
         {
-          "name" : "HST_AGENT"
-        },
-        {
           "name" : "METRICS_MONITOR"
         }
       ]
@@ -101,9 +86,6 @@
         },
         {
           "name" : "SPARK2_JOBHISTORYSERVER"
-        },
-        {
-          "name" : "HST_AGENT"
         },
         {
           "name" : "METRICS_MONITOR"
@@ -149,9 +131,6 @@
           "name" : "SPARK2_CLIENT"
         },
         {
-          "name" : "HST_AGENT"
-        },
-        {
           "name" : "METRICS_MONITOR"
         }
       ]
@@ -161,18 +140,6 @@
       "configurations" : [ ],
       "cardinality" : "1",
       "components" : [
-        {
-          "name" : "ACTIVITY_ANALYZER"
-        },
-        {
-          "name" : "ACTIVITY_EXPLORER"
-        },
-        {
-          "name" : "HST_SERVER"
-        },
-        {
-          "name" : "HST_AGENT"
-        },
         {
           "name" : "METRICS_MONITOR"
         },

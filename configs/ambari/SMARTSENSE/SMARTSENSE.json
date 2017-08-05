@@ -77,7 +77,8 @@
                 "zeppelin.ssl.truststore.path": "/var/lib/smartsense/activity-explorer/truststore",
                 "zeppelin.ssl.truststore.type": "JKS",
                 "zeppelin.war.tempdir": "/var/lib/smartsense/activity-explorer/webapp",
-                "zeppelin.websocket.max.text.message.size": "1024000"
+                "zeppelin.websocket.max.text.message.size": "1024000",
+                "users.admin": "admin"
             },
             "properties_attributes": {}
         },
