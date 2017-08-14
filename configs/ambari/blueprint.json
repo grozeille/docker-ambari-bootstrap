@@ -88,6 +88,27 @@
           "name" : "SPARK2_JOBHISTORYSERVER"
         },
         {
+          "name" : "ZOOKEEPER_CLIENT"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "TEZ_CLIENT"
+        },
+        {
+          "name" : "HIVE_CLIENT"
+        },
+        {
+          "name" : "SPARK2_CLIENT"
+        },
+        {
           "name" : "METRICS_MONITOR"
         }
       ]
@@ -148,6 +169,40 @@
         },
         {
           "name" : "METRICS_GRAFANA"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_hue",
+      "configurations" : [ ],
+      "cardinality" : "1",
+      "components" : [
+        {
+          "name" : "HUE_SERVER"
+        },
+        {
+          "name" : "ZOOKEEPER_CLIENT"
+        },
+        {
+          "name" : "HDFS_CLIENT"
+        },
+        {
+          "name" : "YARN_CLIENT"
+        },
+        {
+          "name" : "MAPREDUCE2_CLIENT"
+        },
+        {
+          "name" : "TEZ_CLIENT"
+        },
+        {
+          "name" : "HIVE_CLIENT"
+        },
+        {
+          "name" : "SPARK2_CLIENT"
+        },
+        {
+          "name" : "METRICS_MONITOR"
         }
       ]
     }

@@ -25,8 +25,6 @@
         },
         "hive-env": {
             "properties": {
-                "alert_ldap_password": "",
-                "alert_ldap_username": "",
                 "content": "hive-env.sh",
                 "enable_heap_dump": "false",
                 "hcat_log_dir": "/var/log/webhcat",
@@ -277,6 +275,7 @@
                 "hive.security.authenticator.manager": "org.apache.hadoop.hive.ql.security.ProxyUserAuthenticator",
                 "hive.security.authorization.enabled": "false",
                 "hive.security.authorization.manager": "org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory",
+                "hive.security.authorization.sqlstd.confwhitelist.append": "hive.server2.logging.operation.verbose",
                 "hive.security.metastore.authenticator.manager": "org.apache.hadoop.hive.ql.security.HadoopDefaultMetastoreAuthenticator",
                 "hive.security.metastore.authorization.auth.reads": "true",
                 "hive.security.metastore.authorization.manager": "org.apache.hadoop.hive.ql.security.authorization.StorageBasedAuthorizationProvider",
@@ -332,9 +331,8 @@
                 "hive.zookeeper.namespace": "hive_zookeeper_namespace",
                 "hive.zookeeper.quorum": "%HOSTGROUP::host_group_zookeeper%:2181",
                 "javax.jdo.option.ConnectionDriverName": "org.postgresql.Driver",
-                "javax.jdo.option.ConnectionURL": "jdbc:postgresql://ambari-agent-hive-database:5432/hive",
-                "javax.jdo.option.ConnectionUserName": "hive",
-                "javax.jdo.option.ConnectionPassword": "hive"
+                "javax.jdo.option.ConnectionURL": "jdbc:postgresql://hive-database:5432/hive",
+                "javax.jdo.option.ConnectionUserName": "hive"
             },
             "properties_attributes": {
                 "hidden": {
@@ -510,6 +508,8 @@
                 "templeton.storage.class": "org.apache.hive.hcatalog.templeton.tool.ZooKeeperStorage",
                 "templeton.streaming.jar": "hdfs:///hdp/apps/${hdp.version}/mapreduce/hadoop-streaming.jar",
                 "templeton.zookeeper.hosts": "%HOSTGROUP::host_group_zookeeper%:2181",
+                "webhcat.proxyuser.hue.groups": "*",
+                "webhcat.proxyuser.hue.hosts": "*",
                 "webhcat.proxyuser.root.groups": "*",
                 "webhcat.proxyuser.root.hosts": "hdp-ambari-server-1"
             },

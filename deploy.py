@@ -28,7 +28,7 @@ def build_host_groups(config_folder, cluster_size, stack_name):
 
         for cpt in range(1, size + 1):
             cluster_host_group['hosts'].append(
-                {'fqdn': '{0}-ambari-agent-{1}-{2}'.format(stack_name, name[11:], cpt)})
+                {'fqdn': '{0}-{1}-{2}'.format(stack_name, name[11:], cpt)})
 
             result.append(cluster_host_group)
 

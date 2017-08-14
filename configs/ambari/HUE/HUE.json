@@ -1,0 +1,342 @@
+{
+    "properties": {
+        "hue-auth-site": {
+            "properties": {
+                "backend": "desktop.auth.backend.AllowFirstUserDjangoBackend",
+                "behind_reverse_proxy": "false",
+                "change_default_password": "false",
+                "expire_superusers": "true",
+                "expires_after": "-1",
+                "force_username_lowercase": "true",
+                "force_username_uppercase": "false",
+                "idle_session_timeout": "-1",
+                "ignore_username_case": "true",
+                "login_cooloff_time": "60",
+                "login_failure_limit": "3",
+                "login_lock_out_at_failure": "false",
+                "login_lock_out_by_combination_user_and_ip": "false",
+                "login_lock_out_use_user_agent": "false",
+                "pam_service": "login",
+                "remote_user_header": "HTTP_REMOTE_USER",
+                "reverse_proxy_header": "HTTP_X_FORWARDED_FOR",
+                "user_aug": "desktop.auth.backend.DefaultUserAugmentor"
+            },
+            "properties_attributes": {}
+        },
+        "hue-desktop-site": {
+            "properties": {
+                "DB_FLAVOR": "postgresql_psycopg2",
+                "allowed_hosts": "*",
+                "app_blacklist": "{{app_blacklist}}",
+                "audit_event_log_dir": "/var/log/hue/audit.log",
+                "audit_log_max_file_size": "100MB",
+                "auth_password": "",
+                "auth_username": "hue",
+                "cherrypy_server_threads": "40",
+                "collect_usage": "true",
+                "database_logging": "false",
+                "db_host": "hue-database",
+                "db_name": "hue",
+                "db_options": "{}",
+                "db_password_script": "",
+                "db_port": "5432",
+                "db_user": "hue",
+                "default_hdfs_superuser": "hdfs",
+                "default_site_encoding": "utf-8",
+                "default_user": "hue",
+                "django_debug_mode": "true",
+                "django_email_backend": "django.core.mail.backends.smtp.EmailBackend",
+                "django_server_email": "'hue@localhost.localdomain'",
+                "editor_autocomplete_timeout": "3000",
+                "enable_server": "yes",
+                "http_500_debug_mode": "true",
+                "http_x_frame_options": "SAMEORIGIN",
+                "kerberos_hue_keytab": "",
+                "kerberos_hue_principal": "",
+                "kerberos_kinit_path": "/usr/bin/kinit",
+                "leaflet_tile_layer": "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+                "leaflet_tile_layer_attribution": "''",
+                "log_redaction_file": "",
+                "memory_profiler": "false",
+                "metrics_collection_interval": "30000",
+                "metrics_enable_web_metrics": "True",
+                "metrics_location": "/var/log/hue/metrics.json",
+                "middleware": "desktop.auth.backend.LdapSynchronizationBackend",
+                "oauth_access_token_url": "https://api.twitter.com/oauth/access_token",
+                "oauth_authenticate_url": "https://api.twitter.com/oauth/authorize",
+                "oauth_consumer_key": "XXXXXXXXXXXXXXXXXXXXX",
+                "oauth_consumer_secret": "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+                "oauth_request_token_url": "https://api.twitter.com/oauth/request_token",
+                "redirect_whitelist": "^(\\/[a-zA-Z0-9]+.*|\\/)$",
+                "secret_key": "qwertyuiopasdfghjklzxcvbnm1234567890",
+                "secret_key_script": "",
+                "secure_browser_xss_filter": "true",
+                "secure_content_security_policy": "\"script-src 'self' 'unsafe-inline' 'unsafe-eval' *.google-analytics.com *.doubleclick.net *.mathjax.org data:;img-src 'self' *.google-analytics.com *.doubleclick.net *.tile.osm.org data:;style-src 'self' 'unsafe-inline';connect-src 'self';child-src 'self' data:;object-src 'none'\"",
+                "secure_content_type_nosniff": "true",
+                "secure_hsts_include_subdomains": "true",
+                "secure_hsts_seconds": "31536000",
+                "secure_proxy_ssl_header": "false",
+                "secure_redirect_exempt": "[]",
+                "secure_redirect_host": "0.0.0.0",
+                "secure_ssl_redirect": "False",
+                "send_dbug_messages": "true",
+                "server_group": "hue",
+                "server_user": "hue",
+                "session_expire_at_browser_close": "false",
+                "session_http_only": "true",
+                "session_secure": "false",
+                "session_ttl": "1209600",
+                "smtp_default_from_email": "hue@localhost",
+                "smtp_host": "localhost",
+                "smtp_password": "25",
+                "smtp_port": "25",
+                "smtp_tls": "no",
+                "smtp_user": "",
+                "ssl_cacerts": "/etc/hue/cacerts.pem",
+                "ssl_certificate": "",
+                "ssl_certificate_chain": "",
+                "ssl_cipher_list": "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA",
+                "ssl_enable": "false",
+                "ssl_password": "",
+                "ssl_password_script": "",
+                "ssl_private_key": "",
+                "time_zone": "America/Los_Angeles",
+                "use_default_configuration": "false",
+                "use_new_editor": "true",
+                "use_x_forwarded_host": "false",
+                "validate": "true"
+            },
+            "properties_attributes": {}
+        },
+        "hue-env": {
+            "properties": {
+                "http_host": "{{http_host}}",
+                "http_port": "8888",
+                "hue-hbase-module-enabled": "No",
+                "hue-hdfs-module-enabled": "Yes",
+                "hue-hive-module-enabled": "Yes",
+                "hue-impala-module-enabled": "No",
+                "hue-notebook-module-enabled": "Yes",
+                "hue-oozie-module-enabled": "No",
+                "hue-pig-module-enabled": "No",
+                "hue-rdbms-module-enabled": "No",
+                "hue-solr-module-enabled": "No",
+                "hue-spark-module-enabled": "No",
+                "hue-yarn-module-enabled": "Yes",
+                "hue-zookeeper-module-enabled": "No",
+                "hue_group": "hue",
+                "hue_log_dir": "/var/log/hue",
+                "hue_pid_dir": "/var/run/hue",
+                "hue_user": "hue"
+            },
+            "properties_attributes": {}
+        },
+        "hue-hadoop-site": {
+            "properties": {
+                "filebrowser_archive_upload_tempdir": "/tmp",
+                "filebrowser_show_download_button": "true",
+                "filebrowser_show_upload_button": "true",
+                "fs_defaultfs": "{{namenode_address}}",
+                "hadoop_conf_dir": "/etc/hadoop/conf",
+                "hdfs_httpfs_host": "",
+                "history_server_api_url": "{{history_server_api_url}}",
+                "jobbrowser_disable_killing_jobs": "false",
+                "jobbrowser_log_offset": "1000000",
+                "jobbrowser_share_jobs": "false",
+                "jobsub_local_data_dir": "/tmp/jobsub/data",
+                "jobsub_sample_data_dir": "/tmp/jobsub/sample_data",
+                "logical_name": "{{logical_name}}",
+                "proxy_api_url": "{{proxy_api_url1}}",
+                "resourcemanager_api_url": "{{resourcemanager_api_url1}}",
+                "resourcemanager_host": "{{resourcemanager_host}}",
+                "resourcemanager_port": "{{resourcemanager_port}}",
+                "security_enabled": "{{security_enabled}}",
+                "spark_history_server_url": "{{spark_history_server_url}}",
+                "ssl_cert_ca_verify": "True",
+                "submit_to": "True",
+                "webhdfs_url": "{{webhdfs_url}}"
+            },
+            "properties_attributes": {}
+        },
+        "hue-hbase-site": {
+            "properties": {
+                "hbase_clusters": "{{hbase_cluster}}",
+                "hbase_conf_dir": "/etc/hbase/conf",
+                "thrift_transport": "buffered",
+                "truncate_limit": "500"
+            },
+            "properties_attributes": {}
+        },
+        "hue-hive-site": {
+            "properties": {
+                "auth_password": "",
+                "auth_username": "hue",
+                "close_queries": "false",
+                "config_whitelist": "hive.map.aggr,hive.exec.compress.output,hive.exec.parallel,hive.execution.engine,mapreduce.job.queuename",
+                "download_cell_limit": "10000000",
+                "hive_conf_dir": "/etc/hive/conf",
+                "hive_server_host": "{{hive_server_host}}",
+                "hive_server_port": "{{hive_server_port}}",
+                "list_partitions_limit": "10000",
+                "query_partitions_limit": "10",
+                "server_conn_timeout": "120",
+                "ssl_cacerts": "/etc/hue/cacerts.pem",
+                "ssl_validate": "true",
+                "thrift_version": "7",
+                "use_get_log_api": "false"
+            },
+            "properties_attributes": {}
+        },
+        "hue-log4j-env": {
+            "properties": {
+                "content": "hue-log4j-env.sh"
+            },
+            "properties_attributes": {}
+        },
+        "hue-notebook-site": {
+            "properties": {
+                "enable_batch_execute": "true",
+                "enable_dbproxy_server": "true",
+                "enable_query_builder": "true",
+                "enable_query_scheduling": "true",
+                "github_api_url": "https://api.github.com",
+                "github_client_id": "",
+                "github_client_secret": "",
+                "github_remote_url": "https://github.com"
+            },
+            "properties_attributes": {}
+        },
+        "hue-oozie-site": {
+            "properties": {
+                "enable_cron_scheduling": "true",
+                "enable_document_action": "false",
+                "local_data_dir": "/usr/local/hue/apps/oozie/examples",
+                "oozie_jobs_count": "50",
+                "oozie_url": "{{oozie_url}}",
+                "remote_data_dir": "/user/hue/oozie/workspaces",
+                "remote_deployement_dir": "/user/hue/oozie/deployments",
+                "sample_data_dir": "/usr/local/hue/apps/oozie/examples/input_data",
+                "security_enabled": "{{security_enabled}}"
+            },
+            "properties_attributes": {}
+        },
+        "hue-pig-site": {
+            "properties": {
+                "local_sample_dir": "/usr/hdp/current/pig-client",
+                "remote_data_dir": "/user/hue/pig/examples"
+            },
+            "properties_attributes": {}
+        },
+        "hue-rdbms-site": {
+            "properties": {
+                "mysql_engine": "false",
+                "mysql_host": "localhost",
+                "mysql_name": "",
+                "mysql_nice_name": "\"MySQL DB\"",
+                "mysql_options": "{}",
+                "mysql_password": "",
+                "mysql_port": "3306",
+                "mysql_user": "example",
+                "oracle_engine": "false",
+                "oracle_host": "localhost",
+                "oracle_name": "",
+                "oracle_nice_name": "\"Oracle DB\"",
+                "oracle_options": "{}",
+                "oracle_password": "",
+                "oracle_port": "1521",
+                "oracle_user": "example",
+                "postgresql_engine": "false",
+                "postgresql_host": "localhost",
+                "postgresql_name": "",
+                "postgresql_nice_name": "\"PostgreSQL DB\"",
+                "postgresql_options": "{}",
+                "postgresql_password": "",
+                "postgresql_port": "5432",
+                "postgresql_user": "example",
+                "sqlite_engine": "false",
+                "sqlite_name": "/usr/local/hue/desktop/desktop.db",
+                "sqlite_nice_name": "\"SQLITE DB\"",
+                "sqlite_options": "{}"
+            },
+            "properties_attributes": {}
+        },
+        "hue-solr-site": {
+            "properties": {
+                "empty_query": "*:*",
+                "enable_new_indexer": "false",
+                "latest": "true",
+                "security_enabled": "{{security_enabled}}",
+                "solr_url": "{{solr_url}}",
+                "solr_zk_path": "/solr",
+                "solrctl_path": "/usr/bin/solrctl",
+                "ssl_cert_ca_verify": "true"
+            },
+            "properties_attributes": {}
+        },
+        "hue-spark-site": {
+            "properties": {
+                "livy_server_host": "spark",
+                "livy_server_port": "8999",
+                "livy_server_session_kind": "yarn",
+                "sql_server_host": "localhost",
+                "sql_server_port": "10002"
+            },
+            "properties_attributes": {}
+        },
+        "hue-ugsync-site": {
+            "properties": {
+                "SYNC_SOURCE": "unix",
+                "usersync.enabled": "false",
+                "usersync.ldap.base.dn": "",
+                "usersync.ldap.bind.dn": "\"CN=ServiceAccount,DC=mycompany,DC=com\"",
+                "usersync.ldap.bind.password": "",
+                "usersync.ldap.bind.password.script": "",
+                "usersync.ldap.cert": "",
+                "usersync.ldap.create.users.on.login": "true",
+                "usersync.ldap.debug": "false",
+                "usersync.ldap.debug.level": "255",
+                "usersync.ldap.follow.referrals": "false",
+                "usersync.ldap.force.username.lowercase": "false",
+                "usersync.ldap.force.username.uppercase": "false",
+                "usersync.ldap.group.member.attribute": "members",
+                "usersync.ldap.group.name.attribute": "cn",
+                "usersync.ldap.group.searchenabled": "false",
+                "usersync.ldap.group.searchfilter": "\"objectclass=*\"",
+                "usersync.ldap.ignore.username.case": "true",
+                "usersync.ldap.nested.members.search.depth": "10",
+                "usersync.ldap.nt.domain": "mycompany.com",
+                "usersync.ldap.search.bind.authentication": "true",
+                "usersync.ldap.subgroups": "suboordinate",
+                "usersync.ldap.sync.groups.on.login": "false",
+                "usersync.ldap.trace.level": "0",
+                "usersync.ldap.url": "",
+                "usersync.ldap.use.start.tls": "true",
+                "usersync.ldap.user.name.attribute": "sAMAccountName",
+                "usersync.ldap.user.searchfilter": "\"objectclass=*\"",
+                "usersync.ldap.username.pattern": "\"uid=(username),ou=People,dc=mycompany,dc=com\"",
+                "usersync.sleeptimeinmillisbetweensynccycle": "60000",
+                "usersync.unix.group.file": "/etc/group",
+                "usersync.unix.maxGroupId": "500",
+                "usersync.unix.maxUserId": "10000",
+                "usersync.unix.minGroupId": "500",
+                "usersync.unix.minUserId": "500",
+                "usersync.unix.password.file": "/etc/passwd"
+            },
+            "properties_attributes": {}
+        },
+        "hue-zookeeper-site": {
+            "properties": {
+                "host_ports": "{{zookeeper_host_port}}",
+                "principal_name": "{{zk_principal}}",
+                "rest_url": "{{rest_url}}"
+            },
+            "properties_attributes": {}
+        },
+        "pseudo-distributed.ini": {
+            "properties": {
+                "content": "pseudo-distributed.ini"
+            },
+            "properties_attributes": {}
+        }
+    }
+}

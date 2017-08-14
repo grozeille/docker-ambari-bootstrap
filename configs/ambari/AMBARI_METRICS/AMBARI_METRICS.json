@@ -150,6 +150,9 @@
             "properties_attributes": {
                 "final": {
                     "hbase.zookeeper.quorum": "true"
+                },
+                "hbase.zookeeper.quorum": {
+                    "final": "true"
                 }
             }
         },

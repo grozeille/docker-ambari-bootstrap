@@ -1,0 +1,68 @@
+{
+    "properties": {
+        "zeppelin-config": {
+            "properties": {
+                "zeppelin.anonymous.allowed": "true",
+                "zeppelin.interpreter.connect.timeout": "30000",
+                "zeppelin.interpreter.dir": "interpreter",
+                "zeppelin.interpreter.group.order": "spark,angular,jdbc,livy,md,sh",
+                "zeppelin.interpreters": "org.apache.zeppelin.spark.SparkInterpreter,org.apache.zeppelin.spark.PySparkInterpreter,org.apache.zeppelin.spark.SparkSqlInterpreter,org.apache.zeppelin.spark.DepInterpreter,org.apache.zeppelin.markdown.Markdown,org.apache.zeppelin.angular.AngularInterpreter,org.apache.zeppelin.shell.ShellInterpreter,org.apache.zeppelin.jdbc.JDBCInterpreter,org.apache.zeppelin.phoenix.PhoenixInterpreter,org.apache.zeppelin.livy.LivySparkInterpreter,org.apache.zeppelin.livy.LivyPySparkInterpreter,org.apache.zeppelin.livy.LivySparkRInterpreter,org.apache.zeppelin.livy.LivySparkSQLInterpreter",
+                "zeppelin.notebook.dir": "notebook",
+                "zeppelin.notebook.homescreen": " ",
+                "zeppelin.notebook.homescreen.hide": "false",
+                "zeppelin.notebook.s3.bucket": "zeppelin",
+                "zeppelin.notebook.s3.user": "user",
+                "zeppelin.notebook.storage": "org.apache.zeppelin.notebook.repo.VFSNotebookRepo",
+                "zeppelin.server.addr": "0.0.0.0",
+                "zeppelin.server.allowed.origins": "*",
+                "zeppelin.server.port": "9995",
+                "zeppelin.ssl": "false",
+                "zeppelin.ssl.client.auth": "false",
+                "zeppelin.ssl.key.manager.password": "change me",
+                "zeppelin.ssl.keystore.password": "change me",
+                "zeppelin.ssl.keystore.path": "conf/keystore",
+                "zeppelin.ssl.keystore.type": "JKS",
+                "zeppelin.ssl.truststore.password": "change me",
+                "zeppelin.ssl.truststore.path": "conf/truststore",
+                "zeppelin.ssl.truststore.type": "JKS",
+                "zeppelin.websocket.max.text.message.size": "1024000"
+            },
+            "properties_attributes": {}
+        },
+        "zeppelin-env": {
+            "properties": {
+                "zeppelin.executor.instances": "2",
+                "zeppelin.executor.mem": "512m",
+                "zeppelin.server.kerberos.keytab": "",
+                "zeppelin.server.kerberos.principal": "",
+                "zeppelin.spark.jar.dir": "/apps/zeppelin",
+                "zeppelin_env_content": "zeppelin-env.sh",
+                "zeppelin_group": "zeppelin",
+                "zeppelin_log_dir": "/var/log/zeppelin",
+                "zeppelin_pid_dir": "/var/run/zeppelin",
+                "zeppelin_user": "zeppelin"
+            },
+            "properties_attributes": {}
+        },
+        "zeppelin-log4j-properties": {
+            "properties": {
+                "log4j_properties_content": "zeppelin-log4j-properties.properties"
+            },
+            "properties_attributes": {}
+        },
+        "zeppelin-logsearch-conf": {
+            "properties": {
+                "component_mappings": "ZEPPELIN_MASTER:zeppelin",
+                "content": "zeppelin-logsearch-conf.json",
+                "service_name": "Zeppelin"
+            },
+            "properties_attributes": {}
+        },
+        "zeppelin-shiro-ini": {
+            "properties": {
+                "shiro_ini_content": "zeppelin-shiro-ini.txt"
+            },
+            "properties_attributes": {}
+        }
+    }
+}

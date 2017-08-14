@@ -12,14 +12,15 @@
                 "hadoop.proxyuser.hdfs.hosts": "*",
                 "hadoop.proxyuser.hive.groups": "*",
                 "hadoop.proxyuser.hive.hosts": "*",
+                "hadoop.proxyuser.hue.groups": "*",
+                "hadoop.proxyuser.hue.hosts": "*",
                 "hadoop.proxyuser.livy.groups": "*",
                 "hadoop.proxyuser.livy.hosts": "*",
                 "hadoop.proxyuser.root.groups": "*",
-                "hadoop.proxyuser.root.hosts": "hdp-ambari-server-1",
+                "hadoop.proxyuser.root.hosts": "*",
                 "hadoop.security.auth_to_local": "DEFAULT",
                 "hadoop.security.authentication": "simple",
                 "hadoop.security.authorization": "false",
-                "hadoop.security.key.provider.path": "",
                 "io.compression.codecs": "org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,org.apache.hadoop.io.compress.SnappyCodec",
                 "io.file.buffer.size": "131072",
                 "io.serializations": "org.apache.hadoop.io.serializer.WritableSerialization",
@@ -33,9 +34,6 @@
             "properties_attributes": {
                 "final": {
                     "fs.defaultFS": "true"
-                },
-                "fs.defaultFS": {
-                    "final": "true"
                 }
             }
         },
@@ -126,7 +124,6 @@
                 "dfs.datanode.max.transfer.threads": "4096",
                 "dfs.domain.socket.path": "/var/lib/hadoop-hdfs/dn_socket",
                 "dfs.encrypt.data.transfer.cipher.suites": "AES/CTR/NoPadding",
-                "dfs.encryption.key.provider.uri": "",
                 "dfs.heartbeat.interval": "3",
                 "dfs.hosts.exclude": "/etc/hadoop/conf/dfs.exclude",
                 "dfs.http.policy": "HTTP_ONLY",
@@ -135,6 +132,7 @@
                 "dfs.journalnode.http-address": "0.0.0.0:8480",
                 "dfs.journalnode.https-address": "0.0.0.0:8481",
                 "dfs.namenode.accesstime.precision": "0",
+                "dfs.namenode.acls.enabled": "true",
                 "dfs.namenode.audit.log.async": "true",
                 "dfs.namenode.avoid.read.stale.datanode": "true",
                 "dfs.namenode.avoid.write.stale.datanode": "true",
@@ -167,24 +165,6 @@
                 "nfs.file.dump.dir": "/tmp/.hdfs-nfs"
             },
             "properties_attributes": {
-                "dfs.datanode.data.dir": {
-                    "final": "true"
-                },
-                "dfs.datanode.failed.volumes.tolerated": {
-                    "final": "true"
-                },
-                "dfs.namenode.http-address": {
-                    "final": "true"
-                },
-                "dfs.namenode.name.dir": {
-                    "final": "true"
-                },
-                "dfs.support.append": {
-                    "final": "true"
-                },
-                "dfs.webhdfs.enabled": {
-                    "final": "true"
-                },
                 "final": {
                     "dfs.datanode.data.dir": "true",
                     "dfs.datanode.failed.volumes.tolerated": "true",

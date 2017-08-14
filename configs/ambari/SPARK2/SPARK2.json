@@ -100,7 +100,7 @@
         },
         "spark2-thrift-fairscheduler": {
             "properties": {
-                "fairscheduler_content": "<?xml version=\"1.0\"?>\n            <allocations>\n            <pool name=\"default\">\n            <schedulingMode>FAIR</schedulingMode>\n            <weight>1</weight>\n            <minShare>2</minShare>\n            </pool>\n            </allocations>"
+                "fairscheduler_content": "spark2-thrift-fairscheduler.xml"
             },
             "properties_attributes": {}
         },
@@ -128,15 +128,6 @@
                     "spark.eventLog.dir": "true",
                     "spark.eventLog.enabled": "true",
                     "spark.history.fs.logDirectory": "true"
-                },
-                "spark.eventLog.dir": {
-                    "final": "true"
-                },
-                "spark.eventLog.enabled": {
-                    "final": "true"
-                },
-                "spark.history.fs.logDirectory": {
-                    "final": "true"
                 }
             }
         }
