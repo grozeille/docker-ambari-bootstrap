@@ -41,6 +41,7 @@
                 "db_password_script": "",
                 "db_port": "5432",
                 "db_user": "hue",
+                "db_password": "hue",
                 "default_hdfs_superuser": "hdfs",
                 "default_site_encoding": "utf-8",
                 "default_user": "hue",
