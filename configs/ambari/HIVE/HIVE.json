@@ -332,7 +332,8 @@
                 "hive.zookeeper.quorum": "%HOSTGROUP::host_group_zookeeper%:2181",
                 "javax.jdo.option.ConnectionDriverName": "org.postgresql.Driver",
                 "javax.jdo.option.ConnectionURL": "jdbc:postgresql://hive-database:5432/hive",
-                "javax.jdo.option.ConnectionUserName": "hive"
+                "javax.jdo.option.ConnectionUserName": "hive",
+                "javax.jdo.option.ConnectionPassword": "hive"
             },
             "properties_attributes": {
                 "hidden": {

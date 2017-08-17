@@ -10,9 +10,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN apt-get install -y git && \
     git clone https://github.com/grozeille/ambari-cli.git && \
     cd ambari-cli && \
-    git checkout tags/1.3 && \
+    git checkout tags/1.4 && \
     pyb publish  && \
-    pip install target/dist/ambari-cli-1.3/dist/ambari-cli-1.3.tar.gz
+    pip install target/dist/ambari-cli-1.4/dist/ambari-cli-1.4.tar.gz
 
 
 COPY . .

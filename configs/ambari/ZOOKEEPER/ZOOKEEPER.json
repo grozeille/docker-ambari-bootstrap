@@ -8,7 +8,7 @@
                 "dataDir": "/hadoop/zookeeper",
                 "initLimit": "10",
                 "syncLimit": "5",
-                "tickTime": "3000"
+                "tickTime": "2000"
             },
             "properties_attributes": {}
         },

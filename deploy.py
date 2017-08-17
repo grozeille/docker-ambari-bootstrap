@@ -77,7 +77,7 @@ if __name__ == "__main__":
 
     stack_name = str(r.text)
 
-    r = rancher_metadata_session.get("http://rancher-metadata/latest/self/stack/services/ambari-agent-datanode/scale")
+    r = rancher_metadata_session.get("http://rancher-metadata/latest/self/stack/services/datanode/scale")
     r.raise_for_status()
 
     cluster_size = int(r.text)
