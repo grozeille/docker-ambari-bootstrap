@@ -1,0 +1,24 @@
+{
+    "properties": {
+        "sqoop-atlas-application.properties": {
+            "properties": {
+                "atlas.jaas.KafkaClient.option.renewTicket": "true",
+                "atlas.jaas.KafkaClient.option.useTicketCache": "true"
+            },
+            "properties_attributes": {}
+        },
+        "sqoop-env": {
+            "properties": {
+                "content": "sqoop-env.sh",
+                "jdbc_drivers": " ",
+                "sqoop.atlas.hook": "false",
+                "sqoop_user": "sqoop"
+            },
+            "properties_attributes": {}
+        },
+        "sqoop-site": {
+            "properties": {},
+            "properties_attributes": {}
+        }
+    }
+}

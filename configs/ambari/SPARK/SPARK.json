@@ -1,3 +1,149 @@
 {
-    "properties": {}
+    "properties": {
+        "livy-conf": {
+            "properties": {
+                "livy.environment": "production",
+                "livy.impersonation.enabled": "true",
+                "livy.repl.enableHiveContext": "true",
+                "livy.server.csrf_protection.enabled": "true",
+                "livy.server.port": "8998",
+                "livy.server.recovery.mode": "recovery",
+                "livy.server.recovery.state-store": "filesystem",
+                "livy.server.recovery.state-store.url": "/livy-recovery",
+                "livy.server.session.timeout": "3600000",
+                "livy.spark.master": "yarn-cluster"
+            },
+            "properties_attributes": {}
+        },
+        "livy-env": {
+            "properties": {
+                "content": "livy-env.sh",
+                "livy_group": "livy",
+                "livy_log_dir": "/var/log/livy",
+                "livy_pid_dir": "/var/run/livy",
+                "livy_user": "livy",
+                "spark_home": "/usr/hdp/current/spark-client"
+            },
+            "properties_attributes": {}
+        },
+        "livy-log4j-properties": {
+            "properties": {
+                "content": "livy-log4j-properties.properties"
+            },
+            "properties_attributes": {}
+        },
+        "livy-spark-blacklist": {
+            "properties": {
+                "content": "livy-spark-blacklist.properties"
+            },
+            "properties_attributes": {}
+        },
+        "spark-defaults": {
+            "properties": {
+                "spark.driver.extraLibraryPath": "{{spark_hadoop_lib_native}}",
+                "spark.eventLog.dir": "hdfs:///spark-history",
+                "spark.eventLog.enabled": "true",
+                "spark.executor.extraLibraryPath": "{{spark_hadoop_lib_native}}",
+                "spark.history.fs.logDirectory": "hdfs:///spark-history",
+                "spark.history.kerberos.keytab": "none",
+                "spark.history.kerberos.principal": "none",
+                "spark.history.provider": "org.apache.spark.deploy.history.FsHistoryProvider",
+                "spark.history.ui.port": "18080",
+                "spark.yarn.containerLauncherMaxThreads": "25",
+                "spark.yarn.driver.memoryOverhead": "384",
+                "spark.yarn.executor.memoryOverhead": "384",
+                "spark.yarn.historyServer.address": "{{spark_history_server_host}}:{{spark_history_ui_port}}",
+                "spark.yarn.preserve.staging.files": "false",
+                "spark.yarn.queue": "default",
+                "spark.yarn.scheduler.heartbeat.interval-ms": "5000",
+                "spark.yarn.submit.file.replication": "3"
+            },
+            "properties_attributes": {}
+        },
+        "spark-env": {
+            "properties": {
+                "content": "spark-env.sh",
+                "hive_kerberos_keytab": "{{hive_kerberos_keytab}}",
+                "hive_kerberos_principal": "{{hive_kerberos_principal}}",
+                "spark_daemon_memory": "1024",
+                "spark_group": "spark",
+                "spark_log_dir": "/var/log/spark",
+                "spark_pid_dir": "/var/run/spark",
+                "spark_thrift_cmd_opts": "",
+                "spark_user": "spark"
+            },
+            "properties_attributes": {}
+        },
+        "spark-hive-site-override": {
+            "properties": {
+                "hive.metastore.client.connect.retry.delay": "5",
+                "hive.metastore.client.socket.timeout": "1800",
+                "hive.server2.enable.doAs": "false",
+                "hive.server2.thrift.port": "10015",
+                "hive.server2.transport.mode": "binary"
+            },
+            "properties_attributes": {}
+        },
+        "spark-javaopts-properties": {
+            "properties": {
+                "content": "spark-javaopts-properties.properties"
+            },
+            "properties_attributes": {}
+        },
+        "spark-log4j-properties": {
+            "properties": {
+                "content": "spark-log4j-properties.properties"
+            },
+            "properties_attributes": {}
+        },
+        "spark-logsearch-conf": {
+            "properties": {
+                "component_mappings": "SPARK_JOBHISTORYSERVER:spark_jobhistory_server;SPARK_THRIFTSERVER:spark_thriftserver;LIVY_SERVER:livy_server",
+                "content": "spark-logsearch-conf.json",
+                "service_name": "Spark"
+            },
+            "properties_attributes": {}
+        },
+        "spark-metrics-properties": {
+            "properties": {
+                "content": "spark-metrics-properties.properties"
+            },
+            "properties_attributes": {}
+        },
+        "spark-thrift-fairscheduler": {
+            "properties": {
+                "fairscheduler_content": "spark-thrift-fairscheduler.txt"
+            },
+            "properties_attributes": {}
+        },
+        "spark-thrift-sparkconf": {
+            "properties": {
+                "spark.driver.extraLibraryPath": "{{spark_hadoop_lib_native}}",
+                "spark.dynamicAllocation.enabled": "true",
+                "spark.dynamicAllocation.initialExecutors": "0",
+                "spark.dynamicAllocation.maxExecutors": "10",
+                "spark.dynamicAllocation.minExecutors": "0",
+                "spark.eventLog.dir": "{{spark_history_dir}}",
+                "spark.eventLog.enabled": "true",
+                "spark.executor.extraLibraryPath": "{{spark_hadoop_lib_native}}",
+                "spark.executor.memory": "1g",
+                "spark.hadoop.cacheConf": "false",
+                "spark.history.fs.logDirectory": "{{spark_history_dir}}",
+                "spark.history.provider": "org.apache.spark.deploy.history.FsHistoryProvider",
+                "spark.master": "{{spark_thrift_master}}",
+                "spark.scheduler.allocation.file": "{{spark_conf}}/spark-thrift-fairscheduler.xml",
+                "spark.scheduler.mode": "FAIR",
+                "spark.shuffle.service.enabled": "true",
+                "spark.yarn.am.memory": "512m",
+                "spark.yarn.queue": "default"
+            },
+            "properties_attributes": {
+                "final": {
+                    "spark.eventLog.dir": "true",
+                    "spark.eventLog.enabled": "true",
+                    "spark.history.fs.logDirectory": "true"
+                }
+            }
+        }
+    }
 }

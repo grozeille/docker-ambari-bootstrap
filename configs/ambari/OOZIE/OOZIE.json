@@ -1,3 +1,59 @@
 {
-    "properties": {}
+    "properties": {
+        "oozie-env": {
+            "properties": {
+                "content": "oozie-env.sh",
+                "oozie_admin_port": "11001",
+                "oozie_admin_users": "{oozie_user}, oozie-admin",
+                "oozie_data_dir": "/hadoop/oozie/data",
+                "oozie_database": "Existing PostgreSQL Database",
+                "oozie_heapsize": "2048m",
+                "oozie_log_dir": "/var/log/oozie",
+                "oozie_permsize": "256m",
+                "oozie_pid_dir": "/var/run/oozie",
+                "oozie_tmp_dir": "/var/tmp/oozie",
+                "oozie_user": "oozie",
+                "oozie_user_nofile_limit": "32000",
+                "oozie_user_nproc_limit": "16000",
+                "service_check_job_name": "no-op"
+            },
+            "properties_attributes": {}
+        },
+        "oozie-log4j": {
+            "properties": {
+                "content": "oozie-log4j.properties",
+                "oozie_log_maxhistory": "720"
+            },
+            "properties_attributes": {}
+        },
+        "oozie-logsearch-conf": {
+            "properties": {
+                "component_mappings": "OOZIE_SERVER:oozie_app",
+                "content": "oozie-logsearch-conf.json",
+                "service_name": "Oozie"
+            },
+            "properties_attributes": {}
+        },
+        "oozie-site": {
+            "properties": {
+                "oozie.action.retry.interval": "30",
+                "oozie.authentication.simple.anonymous.allowed": "true",
+                "oozie.authentication.type": "simple",
+                "oozie.base.url": "http://%HOSTGROUP::host_group_oozie%:11000/oozie",
+                "oozie.credentials.credentialclasses": "hcat=org.apache.oozie.action.hadoop.HCatCredentials,hive2=org.apache.oozie.action.hadoop.Hive2Credentials",
+                "oozie.db.schema.name": "oozie",
+                "oozie.service.AuthorizationService.security.enabled": "true",
+                "oozie.service.HadoopAccessorService.hadoop.configurations": "*={{hadoop_conf_dir}}",
+                "oozie.service.HadoopAccessorService.kerberos.enabled": "false",
+                "oozie.service.JPAService.jdbc.driver": "org.postgresql.Driver",
+                "oozie.service.JPAService.jdbc.url": "jdbc:postgresql://oozie-database:5432/oozie",
+                "oozie.service.JPAService.jdbc.username": "oozie",
+                "oozie.service.JPAService.jdbc.password": "oozie",
+                "oozie.service.SparkConfigurationService.spark.configurations": "*=spark-conf",
+                "oozie.service.URIHandlerService.uri.handlers": "org.apache.oozie.dependency.FSURIHandler,org.apache.oozie.dependency.HCatURIHandler",
+                "oozie.services.ext": "\n      org.apache.oozie.service.JMSAccessorService,org.apache.oozie.service.PartitionDependencyManagerService,org.apache.oozie.service.HCatAccessorService"
+            },
+            "properties_attributes": {}
+        }
+    }
 }

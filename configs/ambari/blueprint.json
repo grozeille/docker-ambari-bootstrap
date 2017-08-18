@@ -78,6 +78,15 @@
       ]
     },
     {
+      "name" : "host_group_oozie",
+      "configurations" : [ ],
+      "components" : [
+        {
+          "name" : "OOZIE_SERVER"
+        }
+      ]
+    },
+    {
       "name" : "host_group_spark",
       "configurations" : [ ],
       "components" : [
@@ -85,7 +94,7 @@
           "name" : "LIVY2_SERVER"
         },
         {
-          "name" : "SPARK2_JOBHISTORYSERVER"
+          "name" : "SPARK_JOBHISTORYSERVER"
         },
         {
           "name" : "ZOOKEEPER_CLIENT"
@@ -106,7 +115,7 @@
           "name" : "HIVE_CLIENT"
         },
         {
-          "name" : "SPARK2_CLIENT"
+          "name" : "SPARK_CLIENT"
         },
         {
           "name" : "METRICS_MONITOR"
@@ -149,7 +158,13 @@
           "name" : "HIVE_CLIENT"
         },
         {
-          "name" : "SPARK2_CLIENT"
+          "name" : "SPARK_CLIENT"
+        },
+        {
+          "name" : "SQOOP"
+        },
+        {
+          "name" : "OOZIE_CLIENT"
         },
         {
           "name" : "METRICS_MONITOR"
@@ -197,9 +212,6 @@
         },
         {
           "name" : "HIVE_CLIENT"
-        },
-        {
-          "name" : "SPARK2_CLIENT"
         },
         {
           "name" : "METRICS_MONITOR"
