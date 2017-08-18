@@ -12,7 +12,7 @@ RUN apt-get install -y git && \
     cd ambari-cli && \
     git checkout tags/1.4 && \
     pyb publish  && \
-    pip install target/dist/ambari-cli-1.4/dist/ambari-cli-1.4.tar.gz
+    pip install target/dist/ambari-cli-1.5/dist/ambari-cli-1.5.tar.gz
 
 
 COPY . .
