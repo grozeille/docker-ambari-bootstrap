@@ -118,11 +118,11 @@
                 "hue-hive-module-enabled": "Yes",
                 "hue-impala-module-enabled": "No",
                 "hue-notebook-module-enabled": "Yes",
-                "hue-oozie-module-enabled": "No",
+                "hue-oozie-module-enabled": "Yes",
                 "hue-pig-module-enabled": "No",
                 "hue-rdbms-module-enabled": "No",
                 "hue-solr-module-enabled": "No",
-                "hue-spark-module-enabled": "No",
+                "hue-spark-module-enabled": "Yes",
                 "hue-yarn-module-enabled": "Yes",
                 "hue-zookeeper-module-enabled": "No",
                 "hue_group": "hue",
@@ -276,8 +276,8 @@
         },
         "hue-spark-site": {
             "properties": {
-                "livy_server_host": "spark",
-                "livy_server_port": "8999",
+                "livy_server_host": "localhost",
+                "livy_server_port": "8998",
                 "livy_server_session_kind": "yarn",
                 "sql_server_host": "localhost",
                 "sql_server_port": "10002"

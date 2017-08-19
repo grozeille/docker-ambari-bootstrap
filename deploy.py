@@ -35,15 +35,20 @@ def build_host_groups(config_folder, cluster_size, stack_name):
     return result
 
 
-def check_for_rancher(session):
+def is_stack_ready(session):
     logging.info("Wait for rancher to be ready")
     try:
-        r = session.get("http://rancher-metadata/")
-        if r.status_code != 200:
-            logging.info("Status code" + str(r.status_code))
-            return False
-        else:
-            return True
+        r = session.get("http://rancher-metadata/latest/self/stack", headers={'Accept': 'application/json'})
+        r.raise_for_status()
+
+        services = r.json()["services"]
+        statuses = ["Image statuses"]
+        global_status = True
+        for service in services:
+            global_status &= (service["state"] == "active")
+            statuses.append("{0} : {1}".format(service["name"], service["state"]))
+            logging.info("\n".join(statuses))
+        return global_status
     except:
         logging.error("Unexpected error:", sys.exc_info()[1])
         return False
@@ -67,7 +72,7 @@ if __name__ == "__main__":
     rancher_metadata_session = Session()
 
     while True:
-        ready = check_for_rancher(rancher_metadata_session)
+        ready = is_stack_ready(rancher_metadata_session)
         time.sleep(10)
         if ready:
             break

@@ -91,7 +91,7 @@
       "configurations" : [ ],
       "components" : [
         {
-          "name" : "LIVY2_SERVER"
+          "name" : "LIVY_SERVER"
         },
         {
           "name" : "SPARK_JOBHISTORYSERVER"
