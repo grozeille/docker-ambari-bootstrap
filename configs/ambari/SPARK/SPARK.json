@@ -5,7 +5,7 @@
                 "livy.environment": "production",
                 "livy.impersonation.enabled": "true",
                 "livy.repl.enableHiveContext": "true",
-                "livy.server.csrf_protection.enabled": "true",
+                "livy.server.csrf_protection.enabled": "false",
                 "livy.server.port": "8998",
                 "livy.server.recovery.mode": "recovery",
                 "livy.server.recovery.state-store": "filesystem",
